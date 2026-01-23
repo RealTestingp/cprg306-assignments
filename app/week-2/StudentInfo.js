@@ -5,7 +5,7 @@ export default function StudentInfo() {
     <div>
       <p>Name: Dylan Khuu</p>
       <p>
-      Github: <Link href="https://github.com/RealTestingp/cprg306-assignments" className="underline">RealTestingp/cprg306-assignments</Link>
+      GitHub: <Link href="https://github.com/RealTestingp/cprg306-assignments" className="underline">RealTestingp/cprg306-assignments</Link>
       </p>
     </div>
   )

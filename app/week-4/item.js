@@ -5,7 +5,7 @@ const Item = ({ name, quantity, category }) => {
         <div>
           <h2 className="text-lg text-black font-semibold capitalize">{name}</h2>
           {/* <p className="text-sm text-gray-500 capitalize">{category}</p> */}
-          <p className="text-sm text-gray-500">Quantity: {quantity}</p>
+          <p className="text-sm text-black">Quantity: {quantity}</p>
         </div>
       </div>
     </ul>

@@ -1,0 +1,54 @@
+import Item from './item';
+import { useState } from 'react';
+
+const ItemList = ({ items }) => {
+  const [sortBy, setSortBy] = useState('name');
+
+  const sortedItems = [...items].sort((a, b) => 
+    a[sortBy].localeCompare(b[sortBy])
+  );
+
+  const groupItems = sortedItems.reduce((grouped, item) => {
+    if (!grouped[item.category]) {
+      grouped[item.category] = [];
+    }
+    grouped[item.category].push(item);
+    return grouped;
+  }, {});
+
+  const sortedCategories = Object.keys(groupItems).sort();
+
+  return (
+    <div className="w-full max-w-lg">
+      <div className="mb-4">
+        <button
+          onClick={() => setSortBy('name')}
+          className={`mr-2 px-4 py-2 rounded ${sortBy === "name" ? "bg-gray-800 text-white" : "bg-gray-200"}`}
+        >
+          Sort by Name
+        </button>
+        <button
+          onClick={() => setSortBy('category')}
+          className={`px-4 py-2 rounded ${sortBy === "category" ? "bg-gray-800 text-white" : "bg-gray-200"}`}
+        >
+          Sort by Category
+        </button>
+      </div>
+      {sortedCategories.map((category) => (
+        <div key={category} className="mb-6">
+          <h2 className="text-xl font-semibold mb-3 capitalize">{category}</h2>
+          {sortedItems.filter((item) => item.category === category).map((item) => (
+            <Item
+              key={item.id}
+              name={item.name}
+              quantity={item.quantity}
+              category={item.category}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+};
+
+export default ItemList;

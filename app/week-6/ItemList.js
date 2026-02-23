@@ -27,7 +27,7 @@ const ItemList = ({ items }) => {
 
   return (
     <div className="w-full max-w-lg">
-      <div className="mb-4">
+      <div className="mb-4 flex justify-center space-x-2">
         <button onClick={() => setSortBy('name')} className={buttonClass('name')}>
           Sort by Name
         </button>

@@ -39,35 +39,31 @@ const ItemList = ({ items }) => {
         </button>
       </div>
 
-      {/* {sortedCategories.map((category) => (
-        <div key={category} className="mb-6">
-          <h2 className="text-xl font-semibold mb-3 capitalize">{category}</h2>
-          {sortedItems.filter((item) => item.category === category).map((item) => (
-            <Item
-              key={item.id}
-              name={item.name}
-              quantity={item.quantity}
-              category={item.category}
-            />
-          ))}
-        </div>
-      ))} */}
-
       {sortBy === 'grouped' ? (
-  sortedCategories.map((category) => (
-    <div key={category} className="mb-6">
-      <h2 className="text-xl font-semibold mb-3 capitalize">{category}</h2>
-      {groupItems[category].map((item) => (
-        <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
-      ))}
+        sortedCategories.map((category) => (
+          <div key={category} className="mb-6">
+            <h2 className="text-xl font-semibold mb-3 capitalize">{category}</h2>
+            {groupItems[category].map((item) => (
+              <Item
+                key={item.id}
+                name={item.name}
+                quantity={item.quantity}
+                category={item.category}
+              />
+            ))}
     </div>
   ))
-) : (
+) : ( // else sort by name or category
   <div>
     {[...items]
       .sort((a, b) => a[sortBy].localeCompare(b[sortBy]))
       .map((item) => (
-        <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
+        <Item
+          key={item.id}
+          name={item.name}
+          quantity={item.quantity}
+          category={item.category}
+        />
       ))}
   </div>
 )}

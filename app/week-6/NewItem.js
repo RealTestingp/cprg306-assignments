@@ -19,37 +19,40 @@ const NewItem = ({ onAddItem }) => {
   const categories = ["produce", "dairy", "bakery", "meat", "frozen foods", "canned goods", "dry goods", "beverages", "snacks", "household", "other"];
   return (
     <form className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
-      
-      <input type="text" value={name} onChange={(e) => setName(e.target.value)} required
-      className="w-full p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white mb-4"/>
+
+      <label htmlFor="name" className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+        Name
+      </label>
+      <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} required
+        className="w-full p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white mb-4" />
 
       <div className="flex gap-4 mb-4">
-        <input type="number" min="1" max="99" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
-        className="w-20 p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white"/>
-
-        <select value={category} onChange={(e) => setCategory(e.target.value)}
-        className="flex-1 p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {cat.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
-            </option>
-          ))}
-          {/* <option value="produce">Produce</option>
-          <option value="dairy">Dairy</option>
-          <option value="bakery">Bakery</option>
-          <option value="meat">Meat</option>
-          <option value="frozen foods">Frozen Foods</option>
-          <option value="canned goods">Canned Goods</option>
-          <option value="dry goods">Dry Goods</option>
-          <option value="beverages">Beverages</option>
-          <option value="snacks">Snacks</option>
-          <option value="household">Household</option>
-          <option value="other">Other</option> */}
-        </select>
+        <div>
+          <label htmlFor="quantity" className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Quantity
+          </label>
+          <input id="quantity" type="number" min="1" max="99" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))}
+            className="w-20 p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
+        </div>
+        <div className="flex-1">
+          <label htmlFor="category" className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Category
+          </label>
+          <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}
+            className="w-full p-2 rounded-md border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <button type="submit"
-      className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-600">+</button>
+        className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white px-4 py-2 rounded-md hover:from-blue-600 hover:to-purple-600">
+        +
+      </button>
     </form>
   );
 }

@@ -16,6 +16,7 @@ const NewItem = ({ onAddItem }) => {
     setCategory("produce");
   };
 
+  const categories = ["produce", "dairy", "bakery", "meat", "frozen foods", "canned goods", "dry goods", "beverages", "snacks", "household", "other"];
   return (
     <form className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
       

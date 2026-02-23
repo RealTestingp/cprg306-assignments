@@ -23,13 +23,13 @@ const ItemList = ({ items }) => {
       <div className="mb-4">
         <button
           onClick={() => setSortBy('name')}
-          className={`mr-2 px-4 py-2 rounded ${sortBy === "name" ? "bg-gray-800 text-white" : "bg-gray-200"}`}
+          className={`mr-2 px-4 py-2 rounded ${sortBy === "name" ? "bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900" : "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white"}`}
         >
           Sort by Name
         </button>
         <button
           onClick={() => setSortBy('category')}
-          className={`px-4 py-2 rounded ${sortBy === "category" ? "bg-gray-800 text-white" : "bg-gray-200"}`}
+          className={`px-4 py-2 rounded ${sortBy === "category" ? "bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900" : "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white"}`}
         >
           Sort by Category
         </button>

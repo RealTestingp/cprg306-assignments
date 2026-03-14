@@ -22,9 +22,8 @@ const App = () => {
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-6 pt-12">
       <h1 className="text-3xl font-bold mb-6">Shopping List</h1>
       <div className="flex items-start gap-6" style={{ width: '1000px' }}>
-        <div style={{ width: '500px' }} className="shrink-0">
+        <div style={{ width: '500px' }} className="shrink-0 flex flex-col gap-6">
           <NewItem onAddItem={handleAddItem} />
-          <div style={{ height: '32px' }}></div>
           <ItemList items={itemList} onItemSelect={handleItemSelect}/>
         </div>
         <div style={{ width: '350px' }} className="shrink-0">

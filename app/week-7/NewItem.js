@@ -23,7 +23,7 @@ const NewItem = ({ onAddItem }) => {
 
   const categories = ["produce", "dairy", "bakery", "meat", "frozen foods", "canned goods", "dry goods", "beverages", "snacks", "household", "other"];
   return (
-    <form className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
+    <form className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md mb-8" onSubmit={handleSubmit}>
 
       <label htmlFor="name" className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
         Name

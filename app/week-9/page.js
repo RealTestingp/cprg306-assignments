@@ -1,17 +1,7 @@
+"use client";
 // Import the useUserAuth hook
 import { useUserAuth } from "@/app/contexts/AuthContext";
 import Link from "next/link";
-
-// Sign in to Firebase with GitHub authentication
-await gitHubSignIn();
-
-// Sign out of Firebase
-await firebaseSignOut();
-
-// Display some of the user's information
-<p>
-  Welcome, {user.displayName} ({user.email})
-</p>;
 
 export default function Page() {
   // Use the useUserAuth hook to get the user object and the login and logout functions

@@ -7,6 +7,7 @@ import MealIdeas from "./MealIdeas";
 import { useUserAuth } from "@/app/contexts/AuthContext";
 
 const App = () => {
+  const { user } = useUserAuth();
   const [itemList, setItemList] = useState(items);
   const [selectedItemName, setSelectedItemName] = useState(null);
 

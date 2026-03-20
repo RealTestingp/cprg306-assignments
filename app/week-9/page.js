@@ -1,5 +1,5 @@
 // Import the useUserAuth hook
-import { useUserAuth } from "../contexts/AuthContext";
+import { useUserAuth } from "@/app/contexts/AuthContext";
 import Link from "next/link";
 
 // Sign in to Firebase with GitHub authentication

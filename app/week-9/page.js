@@ -26,13 +26,6 @@ export default function Page() {
     }
   };
 
-  const buttonClass = (mode) =>
-    `mr-2 px-4 py-2 rounded ${
-      sortBy === mode
-        ? 'bg-gray-800 text-white dark:bg-gray-200 dark:text-gray-900'
-        : 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
-    }`;
-
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-6 pt-12">
       <h1 className="text-3xl font-bold mb-6">Shopping List</h1>

@@ -1,14 +1,9 @@
 "use client";
-// Import the useUserAuth hook
 import { useUserAuth } from "@/app/contexts/AuthContext";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function Page() {
-  // Use the useUserAuth hook to get the user object and the login and logout functions
   const { user, gitHubSignIn, firebaseSignOut } = useUserAuth();
-  const [signInPressed, setSignInPressed] = useState(false);
-  const [signOutPressed, setSignOutPressed] = useState(false);
 
   const handleSignIn = async () => {
     try {
@@ -38,22 +33,16 @@ export default function Page() {
             Shopping List
           </Link>
           <button
-            style={{ cursor: 'pointer' }}
-            className={`px-4 py-2 rounded-md ${signOutPressed ? 'bg-gray-400 text-gray-900' : 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'}`}
-            onMouseDown={() => setSignOutPressed(true)}
-            onMouseUp={() => { setSignOutPressed(false); handleSignOut(); }}
-            onMouseLeave={() => setSignOutPressed(false)}
+            className="px-4 py-2 rounded-md bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white active:bg-gray-400 active:text-gray-900 cursor-pointer"
+            onClick={handleSignOut}
           >
             Logout
           </button>
         </div>
       ) : (
         <button
-          style={{ cursor: 'pointer' }}
-          className={`px-4 py-2 bg-gradient-to-r rounded-md text-white ${signInPressed ? 'from-blue-700 to-purple-700' : 'from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600'}`}
-          onMouseDown={() => setSignInPressed(true)}
-          onMouseUp={() => { setSignInPressed(false); handleSignIn(); }}
-          onMouseLeave={() => setSignInPressed(false)}
+          className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-md text-white hover:from-blue-600 hover:to-purple-600 active:from-blue-700 active:to-purple-700 cursor-pointer"
+          onClick={handleSignIn}
         >
           Login
         </button>

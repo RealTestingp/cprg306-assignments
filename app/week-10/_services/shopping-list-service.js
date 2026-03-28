@@ -17,7 +17,5 @@ export const addItem = async (userId, item) => {
 };
 
 export const deleteItem = async (userId, itemId) => {
-  console.log("userId:", userId);
-  console.log("itemId:", itemId);
   await deleteDoc(doc(db, "users", userId, "items", itemId));
 };

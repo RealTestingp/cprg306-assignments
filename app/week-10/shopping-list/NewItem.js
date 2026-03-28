@@ -16,9 +16,8 @@ const NewItem = ({ onAddItem }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newItem = { ...item, id: Math.random().toString(36).substring(2, 9) };
-    onAddItem(newItem);
-    setItem(initialState)
+    onAddItem(item);
+    setItem(initialState);
   };
 
   const categories = ["produce", "dairy", "bakery", "meat", "frozen foods", "canned goods", "dry goods", "beverages", "snacks", "household", "other"];

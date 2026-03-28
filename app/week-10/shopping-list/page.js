@@ -1,18 +1,29 @@
 "use client";
 import ItemList from "./ItemList";
 import NewItem from "./NewItem";
-import items from "./items"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MealIdeas from "./MealIdeas";
 import { useUserAuth } from "@/app/contexts/AuthContext";
+import { getItems, addItem } from "../_services/shopping-list-service";
+import Link from "next/link";
 
 const App = () => {
   const { user } = useUserAuth();
-  const [itemList, setItemList] = useState(items);
+  const [itemList, setItemList] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState(null);
 
-  const handleAddItem = (newItem) => {
-    setItemList((prev) => [...prev, newItem]);
+  const loadItems = async () => {
+    const items = await getItems(user.uid);
+    setItemList(items);
+  }
+
+  useEffect(() => {
+    if (user) loadItems();
+  }, [user]);
+
+  const handleAddItem = async (newItem) => {
+    const id = await addItem(user.uid, newItem);
+    setItem((prev) => [...prev, { ...newItem, id }]);
   };
 
   const handleItemSelect = (item) => {
@@ -20,7 +31,14 @@ const App = () => {
     setSelectedItemName(cleanitemName);
   };
 
-  if (!user) return null;
+  if (!user) return (
+    <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-4 pt-12">
+      <p className="text-lg">You must be logged in.</p>
+      <Link href="/week-10/shopping-list" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600">
+        Go to Login
+      </Link>
+    </main>
+  );
 
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-6 pt-12">

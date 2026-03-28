@@ -29,7 +29,7 @@ export default function Page() {
           <p className="text-lg">
             Welcome, {user.displayName} ({user.email})
           </p>
-          <Link href="/week-9/shopping-list" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600">
+          <Link href="/week-10/shopping-list" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600">
             Shopping List
           </Link>
           <button

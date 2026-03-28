@@ -1,7 +1,7 @@
 import Item from './item';
 import { useState } from 'react';
 
-const ItemList = ({ items, onItemSelect }) => {
+const ItemList = ({ items, onItemSelect, onItemDelete }) => {
   const [sortBy, setSortBy] = useState('name');
 
   const sortedItems = [...items].sort((a, b) => 
@@ -50,6 +50,7 @@ const ItemList = ({ items, onItemSelect }) => {
                 quantity={item.quantity}
                 category={item.category}
                 onSelect={() => onItemSelect(item)}
+                onDelete={() => onItemDelete(item)}
               />
             ))}
     </div>
@@ -65,6 +66,7 @@ const ItemList = ({ items, onItemSelect }) => {
           quantity={item.quantity}
           category={item.category}
           onSelect={() => onItemSelect(item)}
+          onDelete={() => onItemDelete(item)}
         />
       ))}
   </div>

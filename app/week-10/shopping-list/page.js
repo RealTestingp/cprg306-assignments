@@ -4,7 +4,7 @@ import NewItem from "./NewItem";
 import { useState, useEffect } from "react";
 import MealIdeas from "./MealIdeas";
 import { useUserAuth } from "@/app/contexts/AuthContext";
-import { getItems, addItem } from "../_services/shopping-list-service";
+import { getItems, addItem, deleteItem } from "../_services/shopping-list-service";
 import Link from "next/link";
 
 const App = () => {
@@ -23,7 +23,12 @@ const App = () => {
 
   const handleAddItem = async (newItem) => {
     const id = await addItem(user.uid, newItem);
-    setItem((prev) => [...prev, { ...newItem, id }]);
+    setItemList((prev) => [...prev, { ...newItem, id }]);
+  };
+
+  const handleDeleteItem = async (item) => {
+    await deleteItem(user.uid, item.id);
+    setItemList((prev) => prev.filter((i) => i.id !== item.id));
   };
 
   const handleItemSelect = (item) => {
@@ -46,7 +51,7 @@ const App = () => {
       <div className="flex items-start gap-6" style={{ width: '1000px' }}>
         <div style={{ width: '500px' }} className="shrink-0 flex flex-col gap-6">
           <NewItem onAddItem={handleAddItem} />
-          <ItemList items={itemList} onItemSelect={handleItemSelect}/>
+          <ItemList items={itemList} onItemSelect={handleItemSelect} onItemDelete={handleDeleteItem}/>
         </div>
         <div style={{ width: '350px' }} className="shrink-0">
           <MealIdeas ingredient={selectedItemName} />

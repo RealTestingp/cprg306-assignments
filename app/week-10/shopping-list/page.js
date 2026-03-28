@@ -11,14 +11,20 @@ const App = () => {
   const { user } = useUserAuth();
   const [itemList, setItemList] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const loadItems = async () => {
     const items = await getItems(user.uid);
     setItemList(items);
-  }
+  };
 
   useEffect(() => {
-    if (user) loadItems();
+    if (user) {
+      loadItems();
+      setLoading(false);
+    } else {
+      setLoading(false);
+    }
   }, [user]);
 
   const handleAddItem = async (newItem) => {
@@ -35,6 +41,8 @@ const App = () => {
     const cleanitemName = item.name.split(",")[0].replace(/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g, '').trim();
     setSelectedItemName(cleanitemName);
   };
+
+  if (loading) return null;
 
   if (!user) return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-4 pt-12">
@@ -58,7 +66,7 @@ const App = () => {
         </div>
       </div>
     </main>
-  )
+  );
 };
 
 export default App;

@@ -8,32 +8,27 @@ import { getItems, addItem, deleteItem } from "../_services/shopping-list-servic
 import Link from "next/link";
 
 const App = () => {
-  const { user } = useUserAuth();
+  const { user, loading } = useUserAuth();
   const [itemList, setItemList] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const loadItems = async () => {
-    const items = await getItems(user.uid);
-    setItemList(items);
-  };
 
   useEffect(() => {
     if (user) {
-      loadItems();
-      setLoading(false);
-    } else {
-      setLoading(false);
+      const fetchData = async () => {
+        const items = await getItems(user?.uid);
+        setItemList(items);
+      };
+      fetchData();
     }
   }, [user]);
 
   const handleAddItem = async (newItem) => {
-    const id = await addItem(user.uid, newItem);
+    const id = await addItem(user?.uid, newItem);
     setItemList((prev) => [...prev, { ...newItem, id }]);
   };
 
   const handleDeleteItem = async (item) => {
-    await deleteItem(user.uid, item.id);
+    await deleteItem(user?.uid, item.id);
     setItemList((prev) => prev.filter((i) => i.id !== item.id));
   };
 
@@ -47,7 +42,7 @@ const App = () => {
   if (!user) return (
     <main className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-6 flex flex-col items-center gap-4 pt-12">
       <p className="text-lg">You must be logged in.</p>
-      <Link href="/week-10/shopping-list" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600">
+      <Link href="/week-10" className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-md hover:from-blue-600 hover:to-purple-600">
         Go to Login
       </Link>
     </main>

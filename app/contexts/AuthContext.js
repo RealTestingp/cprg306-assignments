@@ -1,5 +1,4 @@
 "use client";
-
 import { useContext, createContext, useState, useEffect } from "react";
 import {
   signInWithPopup,
@@ -13,6 +12,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const gitHubSignIn = () => {
     const provider = new GithubAuthProvider();
@@ -26,12 +26,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, gitHubSignIn, firebaseSignOut }}>
+    <AuthContext.Provider value={{ user, loading, gitHubSignIn, firebaseSignOut }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,8 +5,8 @@ export const getItems = async (userId) => {
   const items = [];
   const itemsQuery = query(collection(db, "users", userId, "items"));
   const querySnapshot = await getDocs(itemsQuery);
-  querySnapshot.forEach((doc) => {
-    items.push({ id: doc.id, ...doc.data() });
+  querySnapshot.forEach((docSnap) => {
+    items.push({ id: docSnap.id, ...docSnap.data() });
   });
   return items;
 };
@@ -17,5 +17,7 @@ export const addItem = async (userId, item) => {
 };
 
 export const deleteItem = async (userId, itemId) => {
+  console.log("userId:", userId);
+  console.log("itemId:", itemId);
   await deleteDoc(doc(db, "users", userId, "items", itemId));
 };
